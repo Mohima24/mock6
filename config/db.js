@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 require('dotenv').config()
 
-const conncetion = mongoose.connect("mongodb+srv://Mohima:mohima@cluster0.nniwend.mongodb.net/mockexam?retryWrites=true&w=majority")
+const connection = mongoose.connect(process.env.MongoURL)
 
-module.exports={
-    conncetion
-}
+module.exports=connection
