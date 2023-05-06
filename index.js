@@ -1,24 +1,30 @@
 const express = require('express')
-const app = express()
-const UserRouter = require('./Routers/user.router')
-const RestaurentRouter = require('./Routers/restaurent.router')
+const app = express();
 const connection = require('./config/db')
-const { ConnectionStates } = require('mongoose')
-require('dotenv').config()
+const postRouter = require('./routers/author.router');
+const cors = require('cors')
 
-const PORT = process.env.PORT || 8999;
-app.use(express.json())
-app.use('/api',UserRouter);
-app.use('/api',RestaurentRouter);
+app.use(cors())
+
+app.use(express.json());
+app.use("/",postRouter);
 
 
-app.listen(PORT,async()=>{
-    
-    console.log(`http://localhost:${PORT}`)
+
+app.listen(1111,async()=>{
+    console.log("http://localhost:1111/")
     try{
-        await connection
-        console.log('connected to database')
+        connection
+        console.log("database connect")
     }catch(err){
-        console.log('error while connecnting db')
+        console.log(err)
     }
 })
+
+// {
+          
+//     "Author":"Abc",
+//     "Notice":"hello2",
+//     "Descriptio":"job alert2"
+      
+//     }
