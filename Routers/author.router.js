@@ -30,7 +30,7 @@ postRouter.post('/post',async(req,res)=>{
     }
 })
 
-postRouter.patch('/post/:id',async(req,res)=>{
+postRouter.patch('/:id',async(req,res)=>{
     const id = req.params.id;
 
     const {
@@ -53,7 +53,7 @@ postRouter.patch('/post/:id',async(req,res)=>{
     }
 })
 
-postRouter.delete('/post/:id',async(req,res)=>{
+postRouter.delete('/:id',async(req,res)=>{
     const id = req.params.id;
 
     try{    
