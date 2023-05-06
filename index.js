@@ -11,8 +11,8 @@ app.use("/post",postRouter);
 
 
 
-app.listen(1111,async()=>{
-    console.log("http://localhost:1111/")
+app.listen(5858,async()=>{
+    console.log("http://localhost:5858/")
     try{
         connection
         console.log("database connect")
