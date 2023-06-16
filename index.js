@@ -1,33 +1,29 @@
-const express = require('express')
-const app = express();
-const connection = require('./config/db')
-const postRouter = require("./routers/author");
-const cors = require('cors')
-app.use(express.json());
-app.use(cors())
+const express = require("express");
+const {connection}= require("./config/db");
+const {userRouter}=require("./routers/user.router");
+const {fileRouter} = require("./routers/file.router")
+let cors= require("cors");
+require("dotenv").config();
 
-app.get('/',(req,res)=>{
-    res.send("hello worls")
+const app = express();
+app.use(cors());
+app.use(express.json());
+app.use("/users",userRouter);
+
+app.use("/files",fileRouter);
+
+app.get("/",(req,res)=>{
+
+    res.send("Home page");
+
 })
 
-app.use("/post",postRouter);
-
-
-
-app.listen(1111,async()=>{
-    console.log("http://localhost:1111/")
+app.listen(process.env.port,async()=>{
     try{
-        connection
-        console.log("database connect")
-    }catch(err){
+        await connection
+        console.log(`http://localhost:${process.env.port}`)
+    }
+    catch(err){
         console.log(err)
     }
 })
-
-// {
-          
-//     "Author":"Abc",
-//     "Notice":"hello2",
-//     "Descriptio":"job alert2"
-      
-//     }
